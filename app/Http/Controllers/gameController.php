@@ -4,30 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
-use DataTables;
 
 class GameController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
-            $data = Game::latest()->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('game.show', $row->id) . '" class="edit btn btn-primary btn-sm">View</a>';
-                    $btn .= ' <a href="' . route('game.edit', $row->id) . '" class="edit btn btn-info btn-sm">Edit</a>';
-                    $btn .= ' <button type="button" data-id="' . $row->id . '" class="btn btn-danger btn-sm delete">Delete</button>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        $games = Game::all(); // Tambahkan ini untuk mengambil semua game
+        $games = Game::all();
         return view('tampilan_game.games', compact('games'));
     }
-
 
     public function create()
     {
