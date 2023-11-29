@@ -20,7 +20,7 @@
                 <img
                     src="{{ Auth::user()->user_image }}"
                     class="user-image img-circle elevation-2"
-                    alt="User Imagess">
+                    alt="User Image">
                 @else
                 <img
                     src="{{ asset('vendor/adminlte3/img/user2-160x160.jpg') }}"

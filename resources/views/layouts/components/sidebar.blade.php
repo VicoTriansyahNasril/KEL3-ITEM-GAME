@@ -20,9 +20,28 @@ $links = [
                 "section_text" => "Tambah Akun",
                 "section_icon" => "far fa-circle",
                 "section_href" => route('akun.add')
-            ]
+            ]           
         ]
-    ]
+    ],
+    [
+        "text" => "Penjualan Item",
+        "icon" => "fas fa-users",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "Data Item",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('akun.dataitem')
+            ],
+            
+            [
+                "section_text" => "Tambah Item",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('akun.add')
+            ],      
+        ]
+   ]  
+    
 ];
 $navigation_links = json_decode(json_encode($links));
 @endphp

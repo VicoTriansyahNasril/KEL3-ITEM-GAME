@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Data Akun</h1>
+                <h1>Data Item</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -57,10 +57,10 @@
                 style="width:100%">
                 <thead>
                     <tr>
-                        <th>Nama</th>
+                        <th>Nama Item</th>
                         <th>Email</th>
-                        <th>Foto</th>
-                        <th>Action</th>
+                        <th>Foto Item</th>
+                        <th>Edit/Hapus</th>
                     </tr>
                 </thead>
                 <tbody></tbody>

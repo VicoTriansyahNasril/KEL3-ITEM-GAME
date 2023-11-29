@@ -5,14 +5,14 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Tambah Akun</h1>
+                <h1>Tambah Item</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">
                         <a href="{{ route('home') }}">Beranda</a>
                     </li>
-                    <li class="breadcrumb-item active">Tambah Akun</li>
+                    <li class="breadcrumb-item active">Tambah Item</li>
                 </ol>
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Informasi Data Diri</h3>
+                        <h3 class="card-title">Silahkan Item apa yang akan di pajang</h3>
 
                         <div class="card-tools">
                             <button
@@ -49,7 +49,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="inputName">Nama</label>
+                            <label for="inputName">Nama Item</label>
                             <input
                                 type="text"
                                 id="inputName"
