@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\transaksiController;
 
 
 
@@ -23,6 +24,14 @@ Route::get('/game/{id}/edit', [GameController::class, 'edit'])->name('game.edit'
 Route::put('/game/{id}', [GameController::class, 'update'])->name('game.update');
 Route::delete('/game/{id}', [GameController::class, 'destroy'])->name('game.destroy');
 
+Route::get('/transaksi', [transaksiController::class, 'index'])->name('transaksi.index');
+Route::get('/transaksi/create', [transaksiController::class, 'create'])->name('transaksi.create');
+Route::post('/transaksi/store', [transaksiController::class, 'store'])->name('transaksi.store');
+Route::get('/transaksi/{id}', [transaksiController::class, 'show'])->name('transaksi.show');
+Route::get('/transaksi/{id}/edit', [transaksiController::class, 'edit'])->name('transaksi.edit');
+Route::put('/transaksi/{id}', [transaksiController::class, 'update'])->name('transaksi.update');
+Route::delete('/transaksi/{id}', [transaksiController::class, 'destroy'])->name('transaksi.destroy');
+
 Route::group(['prefix' => 'dashboard/admin'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -32,7 +41,7 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
     });
 
     Route::controller(AkunController::class)
-        ->prefix('akun')    
+        ->prefix('akun')
         ->as('akun.')
         ->group(function () {
             Route::get('/', 'index')->name('index');

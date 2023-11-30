@@ -72,7 +72,35 @@ $links = [
 "section_href" => route('game.index') // Gantilah dengan rute yang sesuai
 ],
 ]
+],
+
+[
+"text" => "Transaksi",
+"icon" => "fas fa-dollar-sign",
+"is_multi" => true,
+"href" => [
+[
+"section_text" => "Data Pembayaran",
+"section_icon" => "far fa-circle",
+"section_href" => route('transaksi.index') // Rute untuk menampilkan data game
+],
+
+[
+"section_text" => "Tambah Transaksi",
+"section_icon" => "far fa-circle",
+"section_href" => route('transaksi.create')
+],
+
+[
+"section_text" => "Update Transaksi",
+"section_icon" => "far fa-circle",
+"section_href" => route('transaksi.index') // Gantilah dengan rute yang sesuai
+],
+
+
 ]
+]
+
 ];
 
 $navigation_links = json_decode(json_encode($links));
