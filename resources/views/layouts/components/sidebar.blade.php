@@ -33,12 +33,12 @@ $links = [
 [
 "section_text" => "Data Item",
 "section_icon" => "far fa-circle",
-"section_href" => route('akun.add')
+"section_href" => route('akun.dataitem')
 ],
 [
 "section_text" => "Tambah Item",
 "section_icon" => "far fa-circle",
-"section_href" => route('akun.add')
+"section_href" => route('akun.tambahitem')
 ],
 ]
 ],

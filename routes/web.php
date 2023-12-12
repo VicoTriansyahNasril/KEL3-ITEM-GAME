@@ -46,6 +46,11 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/dataitem', [ItemController::class,'index'])->name('dataitem');
+            Route::get('/tambahitem', [ItemController::class, 'tambahitem'])->name('tambahitem');
+            Route::post('/insertitem', [ItemController::class, 'insertitem'])->name('insertitem'); 
+            Route::get('/tampilitem/{id}', [ItemController::class, 'tampilitem'])->name('tampilitem');
+            Route::post('/updateitem/{id}', [ItemController::class, 'updateitem'])->name('updateitem');   
+            Route::get('/delete/{id}', [ItemController::class, 'delete'])->name('delete'); 
             Route::post('showdata', 'dataTable')->name('dataTable');
             Route::match(['get','post'],'tambah', 'tambahAkun')->name('add');
             Route::match(['get','post'],'{id}/ubah', 'ubahAkun')->name('edit');

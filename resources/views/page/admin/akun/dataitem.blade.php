@@ -54,14 +54,17 @@
             <table
                 id="previewAkun"
                 class="table table-striped table-bordered display"
-                style="width:100%">
+                style="width:100%"> 
+                <a href="/dashboard/admin/akun/tambahitem" class="btn btn-primary mb-5">Tambah Item</a>
                 <thead>
                     <tr>
                       <th scope="col">No</th>
-                      <th scope="col">Nama Barang</th>
+                      <th scope="col">Foto</th>
+                      <th scope="col">Nama Item</th>
                       <th scope="col">Deskripsi</th>
                       <th scope="col">Harga Barang</th>
                       <th scope="col">Stok Barang</th>
+                      <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,13 +72,16 @@
                     @foreach ($data as $row)
                     <tr>
                       <th scope="row">{{ $row->id }}</th>
+                      <td>
+                            <img src="{{ asset('foto_item/'.$row->foto_item) }}" alt="" style="width: 150px;">
+                      </td>
                       <td>{{ $row->nama_item }}</td>
                       <td>{{ $row->deskripsi_item }}</td>
                       <td>{{ $row->harga_item }}</td>
                       <td>{{ $row->stok_item }}</td>
                       <td>
-                          <button type="button" class="btn btn-primary">Primary</button>
-                          <button type="button" class="btn btn-secondary">Secondary</button>
+                        <a href="/dashboard/admin/akun/tampilitem/{{ $row->id }}" class="btn btn-secondary">Edit</a>
+                        <a href="/dashboard/admin/akun/delete/{{ $row->id }}" class="btn btn-danger">Delete</a>
                       </td>
                       </tr>
                     @endforeach
