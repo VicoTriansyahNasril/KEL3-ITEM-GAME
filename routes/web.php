@@ -22,7 +22,7 @@ Route::post('/game/store', [GameController::class, 'store'])->name('game.store')
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.show');
 Route::get('/game/{id}/edit', [GameController::class, 'edit'])->name('game.edit');
 Route::put('/game/{id}', [GameController::class, 'update'])->name('game.update');
-Route::delete('/game/{id}', [GameController::class, 'destroy'])->name('game.destroy');
+Route::delete('/delete-game/{id}', [GameController::class, 'destroy'])->name('game.destroy');
 
 Route::get('/transaksi', [transaksiController::class, 'index'])->name('transaksi.index');
 Route::get('/transaksi/create', [transaksiController::class, 'create'])->name('transaksi.create');

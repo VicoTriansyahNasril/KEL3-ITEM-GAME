@@ -1,44 +1,127 @@
-@extends('layouts.app')
+@extends('layouts.base_admin.base_dashboard')
+
+@section('script_head')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- Fonts -->
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<!-- Styles -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@endsection
 
 @section('content')
-    <div class="container">
-        <h1>Daftar Game</h1>
 
-        <a href="{{ route('game.create') }}" class="btn btn-success">Tambah Game</a>
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"></h3>
+            <div class="card-tools">
+            <a href="{{ route('game.create') }}" class="btn btn-success">Tambah Game</a>
 
-        <table class="table mt-3">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nama Game</th>
-                    <th>Jenis Game</th>
-                    <th>Deskripsi Game</th>
-                    <th>Dibuat Pada</th>
-                    <th>Diperbarui Pada</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($games as $game)
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body p-0" style="margin: 20px">
+            <table id="tbl_list" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
                     <tr>
-                        <td>{{ $game->id }}</td>
-                        <td>{{ $game->nama_game }}</td>
-                        <td>{{ $game->jenis_game }}</td>
-                        <td>{{ $game->deskripsi_game }}</td>
-                        <td>{{ $game->created_at }}</td>
-                        <td>{{ $game->updated_at }}</td>
-                        <td>
-                            <a href="{{ route('game.show', $game->id) }}" class="btn btn-info btn-sm">Lihat</a>
-                            <a href="{{ route('game.edit', $game->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('game.destroy', $game->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus game ini?')">Hapus</button>
-                            </form>
-                        </td>
+                        <th>Nama Game</th>
+                        <th>Jenis Game</th>
+                        <th>Deskripsi Game</th>
+                        <th>Dibuat Pada</th>
+                        <th>Diperbarui Pada</th>
+                        <th>Aksi</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
     </div>
+    <!-- /.card -->
+</section>
+
+<script>
+        $(document).ready(function $('#games DataTable();
+        });
+</script>
+@endsection
+
+@section('script_footer')
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tbl_list').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ url()->current() }}',
+                columns: [
+                    { data: 'nama_game', name: 'nama_game' },
+                    { data: 'jenis_game', name: 'jenis_game' },
+                    { data: 'deskripsi_game', name: 'deskripsi_game' },
+                    { data: 'created_at', name: 'created_at' },
+                    { data: 'updated_at', name: 'updated_at' },
+                    {
+                        data: 'id',
+                        name: 'id',
+                        render: function (data, type, full, meta) {
+                            return '<a href="{{ route("game.edit", ["id" => ":id"]) }}" class="editData" data-id="' + data + '"><i class="fas fa-edit fa-lg"></i></a> ' +
+                                   '<a href="{{ route("game.destroy", ["id" => ":id"]) }}" class="hapusData" data-id="' + data + '"><i class="fas fa-trash fa-lg text-danger"></i></a>';
+                        }
+                    },
+                ]
+            });
+
+            // Event delegation for edit and delete actions
+            $('#tbl_list').on('click', '.editData', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                window.location.href = '{{ url("game") }}/' + id + '/edit';
+            });
+
+            $('#tbl_list').on('click', '.hapusData', function (e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    var confirmation = confirm('Are you sure you want to delete this record?');
+    if (confirmation) {
+        // Use AJAX to send a DELETE request
+        $.ajax({
+            url: '{{ url("delete-game") }}/' + id,
+            type: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                // Handle success response, if needed
+                console.log(response);
+                // Remove the row from the DataTable
+                table.row($('#tbl_list').find('.hapusData[data-id="' + id + '"]').closest('tr')).remove().draw();
+            },
+            error: function(error) {
+                // Handle error response, if needed
+                console.error(error);
+            }
+        });
+    }
+});
+
+        });
+    </script>
 @endsection

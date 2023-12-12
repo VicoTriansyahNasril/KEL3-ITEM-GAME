@@ -4,28 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class GameController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
-            $data = Game::latest()->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('game.show', $row->id) . '" class="edit btn btn-primary btn-sm">View</a>';
-                    $btn .= ' <a href="' . route('game.edit', $row->id) . '" class="edit btn btn-info btn-sm">Edit</a>';
-                    $btn .= ' <button type="button" data-id="' . $row->id . '" class="btn btn-danger btn-sm delete">Delete</button>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+        if(request()->ajax()) {
+            $games = Game::query();
+            return DataTables::of($games)
+                ->make();
         }
-
-        $games = Game::all(); // Tambahkan ini untuk mengambil semua game
-        return view('tampilan_game.games', compact('games'));
+        return view('tampilan_game.games');
+    
     }
 
 
@@ -77,12 +68,21 @@ class GameController extends Controller
     }
 
     public function destroy($id)
-    {
-        Game::find($id)->delete();
-
-        return redirect()->route('game.index')
-            ->with('success', 'Game deleted successfully');
+{
+    $game = Game::find($id);
+    if (!$game) {
+        return redirect()->route('game.index')->with('error', 'Game not found');
     }
+
+    $game->delete();
+
+    if (request()->ajax()) {
+        return response()->json(['success' => 'Game deleted successfully']);
+    }
+
+    return redirect()->route('game.index')->with('success', 'Game deleted successfully');
+}
+
 
     public function __construct()
     {
@@ -90,4 +90,3 @@ class GameController extends Controller
     }
 
 }
-

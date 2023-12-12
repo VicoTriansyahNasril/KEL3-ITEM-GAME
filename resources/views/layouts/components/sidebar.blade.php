@@ -59,18 +59,6 @@ $links = [
 "section_icon" => "far fa-circle",
 "section_href" => route('game.create')
 ],
-
-[
-"section_text" => "Update Game",
-"section_icon" => "far fa-circle",
-"section_href" => route('game.index') // Gantilah dengan rute yang sesuai
-],
-
-[
-"section_text" => "Delete Game",
-"section_icon" => "far fa-circle",
-"section_href" => route('game.index') // Gantilah dengan rute yang sesuai
-],
 ]
 ],
 
@@ -89,12 +77,6 @@ $links = [
 "section_text" => "Tambah Transaksi",
 "section_icon" => "far fa-circle",
 "section_href" => route('transaksi.create')
-],
-
-[
-"section_text" => "Update Transaksi",
-"section_icon" => "far fa-circle",
-"section_href" => route('transaksi.index') // Gantilah dengan rute yang sesuai
 ],
 
 
