@@ -55,7 +55,8 @@
                 id="previewAkun"
                 class="table table-striped table-bordered display"
                 style="width:100%"> 
-                <a href="/dashboard/admin/akun/tambahitem" class="btn btn-primary mb-5">Tambah Item</a>
+                <a href="/dashboard/admin/akun/tambahitem" class="btn btn-primary mb-3">Tambah Item</a>
+                <a href="/dashboard/admin/akun/exportpdf" class="btn btn-warning mb-3 ml-3">Export PDF</a>
                 <thead>
                     <tr>
                       <th scope="col">No</th>

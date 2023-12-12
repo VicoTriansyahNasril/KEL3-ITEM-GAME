@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -60,6 +61,17 @@ class ItemController extends Controller
         $data = Item::find($id);
         $data->delete();
         return redirect()->route('akun.dataitem')->with('success','Dataa Berhasil delete');
+    }
+
+
+
+    public function exportpdf()
+    {
+        $data = Item::all();
+
+        view()->share('data', $data);
+        $pdf = Pdf::loadView('page.admin.akun.data-pdf');
+        return $pdf->download("pbo.pdf");
     }
 
 
