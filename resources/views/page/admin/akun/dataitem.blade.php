@@ -54,7 +54,7 @@
             <table
                 id="previewAkun"
                 class="table table-striped table-bordered display"
-                style="width:100%"> 
+                style="width:100%">
                 <a href="/dashboard/admin/akun/tambahitem" class="btn btn-primary mb-3">Tambah Item</a>
                 <a href="/dashboard/admin/akun/exportpdf" class="btn btn-warning mb-3 ml-3">Export PDF</a>
                 <thead>
@@ -69,7 +69,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                  
+
                     @foreach ($data as $row)
                     <tr>
                       <th scope="row">{{ $row->id }}</th>
@@ -83,6 +83,7 @@
                       <td>
                         <a href="/dashboard/admin/akun/tampilitem/{{ $row->id }}" class="btn btn-secondary">Edit</a>
                         <a href="/dashboard/admin/akun/delete/{{ $row->id }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('transaksi.create') }}" class="btn btn-primary">Create Transaction</a>
                       </td>
                       </tr>
                     @endforeach

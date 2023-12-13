@@ -70,7 +70,7 @@ $links = [
 [
 "section_text" => "Data Pembayaran",
 "section_icon" => "far fa-circle",
-"section_href" => route('transaksi.index') // Rute untuk menampilkan data game
+"section_href" => route('akun.dataitem') // Rute untuk menampilkan data game
 ],
 
 [
